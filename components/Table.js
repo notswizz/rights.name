@@ -16,7 +16,7 @@ const Table = ({ data, onStadiumClick, onSearchChange }) => {
     return [];
   }, [data]);
 
-  const columnsToHide = useMemo(() => ['Conference1', 'Link 1', 'Link 2', 'Notes', 'stadium-url', 'Wikipedia'], []);
+  const columnsToHide = useMemo(() => ['Conference1', 'Link 1', 'Link 2', 'Notes', 'stadium-url', 'Wikipedia', 'Industry'], []);
   const visibleHeaders = useMemo(() => memoizedHeaders.filter(header => !columnsToHide.includes(header)), [memoizedHeaders, columnsToHide]);
 
   const filteredData = useMemo(() => filterData(data, searchTerm), [data, searchTerm]);
