@@ -28,36 +28,40 @@ const CFBStats = () => {
   if (error) return <div>{error}</div>;
 
   const formatCell = (cell, label) => {
-    let bgColor = 'bg-gray-200';
+    let bgColor = 'bg-white';
     let textColor = 'text-gray-800';
+    let icon = null;
 
     if (typeof cell === 'string' && cell.includes('%')) {
-      bgColor = 'bg-yellow-500';
-      textColor = 'text-white';
+      bgColor = 'bg-yellow-50';
+      textColor = 'text-yellow-700';
+      icon = '📊';
     } else if (typeof cell === 'string' && cell.includes('$')) {
-      bgColor = 'bg-green-500';
-      textColor = 'text-white';
+      bgColor = 'bg-green-50';
+      textColor = 'text-green-700';
+      icon = '💵';
     } else if (!isNaN(cell)) {
-      bgColor = 'bg-blue-500';
-      textColor = 'text-white';
+      bgColor = 'bg-blue-50';
+      textColor = 'text-blue-700';
+      icon = '🔢';
     }
 
     return (
-      <div className="flex flex-col items-center">
-        <span className={`${bgColor} ${textColor} text-xl font-bold px-3  rounded-full mb-1`}>
-          {cell}
-        </span>
-        <span className="text-sm text-gray-600">{label}</span>
+      <div className={`${bgColor} p-3 rounded-md shadow-sm transition-all duration-300 hover:shadow-md hover:scale-102`}>
+        <div className="flex items-center justify-between">
+          <span className={`${textColor} text-xl font-bold`}>{cell}</span>
+          {icon && <span className="text-lg ml-2">{icon}</span>}
+        </div>
+        <span className="text-xs text-gray-500 font-medium mt-1 block">{label}</span>
       </div>
     );
   };
 
   return (
-    <div className="stats-container bg-black p-2 rounded-xl shadow-lg max-w-5xl mx-auto border-8 border-blue-300">
-
-      <div className="grid grid-cols-5 gap-4">
+    <div className="stats-container bg-gradient-to-br from-black to-black p-4 rounded-lg shadow-xl max-w-4xl mx-auto">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
         {data.slice(1).map((row, rowIndex) => (
-          <div key={rowIndex} className="bg-blue-50 p-2 rounded-lg shadow-sm">
+          <div key={rowIndex}>
             {formatCell(row[1], row[0])}
           </div>
         ))}
