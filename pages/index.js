@@ -69,29 +69,29 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-sky-600 py-4 sm:py-8 px-2 sm:px-4 md:px-6 lg:px-8 relative">
       <Header/>
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-2">
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4">
-            <select 
-              value={sport} 
-              onChange={handleSportChange}
-              className="bg-transparent text-white border-b border-white focus:outline-none text-sm sm:text-base"
-            >
-              {Object.keys(sportCategories).map(s => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
-            <span className="text-white hidden sm:inline">|</span>
-            <select 
-              value={category} 
-              onChange={(e) => setCategory(e.target.value)}
-              className="bg-transparent text-white border-b border-white focus:outline-none text-sm sm:text-base"
-            >
-              {sportCategories[sport].map(c => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
-          </h1>
-        </div>
+      <div className="text-center mb-4">
+  <div className="inline-flex items-center bg-gray-800 rounded-lg p-1 shadow-lg">
+    <select 
+      value={sport} 
+      onChange={handleSportChange}
+      className="bg-transparent text-white focus:outline-none text-sm sm:text-base px-3 py-2 rounded-l-lg hover:bg-gray-700 transition-colors duration-200"
+    >
+      {Object.keys(sportCategories).map(s => (
+        <option key={s} value={s} className="bg-gray-800">{s}</option>
+      ))}
+    </select>
+    <span className="text-gray-500 px-2">|</span>
+    <select 
+      value={category} 
+      onChange={(e) => setCategory(e.target.value)}
+      className="bg-transparent text-white focus:outline-none text-sm sm:text-base px-3 py-2 rounded-r-lg hover:bg-gray-700 transition-colors duration-200"
+    >
+      {sportCategories[sport].map(c => (
+        <option key={c} value={c} className="bg-gray-800">{c}</option>
+      ))}
+    </select>
+  </div>
+</div>
         <div className="flex bg-white bg-opacity-5 backdrop-filter backdrop-blur-lg rounded-lg shadow-xl overflow-hidden">
           <div
             className="w-full p-2 sm:p-4"
