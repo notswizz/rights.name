@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Table from '../components/Table';
 import CFBStats from '../components/CFBStats';
 import dynamic from 'next/dynamic';
+import Header from '../components/Header';
 
 const DynamicTable = dynamic(() => import('../components/Table'), { ssr: false });
 
@@ -66,6 +67,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-sky-600 py-4 sm:py-8 px-2 sm:px-4 md:px-6 lg:px-8 relative">
+      <Header/>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-2">
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4">

@@ -59,7 +59,7 @@ const CFBStats = () => {
 
   return (
     <div className="stats-container bg-gradient-to-br from-black to-black p-4 rounded-lg shadow-xl max-w-4xl mx-auto">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
         {data.slice(1).map((row, rowIndex) => (
           <div key={rowIndex}>
             {formatCell(row[1], row[0])}
