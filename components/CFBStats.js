@@ -28,40 +28,45 @@ const CFBStats = () => {
   if (error) return <div>{error}</div>;
 
   const formatCell = (cell, label) => {
-    let borderColor = 'border-blue-500';
-    let textColor = 'text-blue-400';
-    let icon = null;
+    let icon = '📊';
+    let textColor = 'text-blue-600';
+    let borderColor = 'border-blue-300';
+    let bgColor = 'from-blue-50 to-blue-100';
+    let formattedCell = cell;
 
-    if (typeof cell === 'string' && cell.includes('%')) {
-      borderColor = 'border-yellow-500';
-      textColor = 'text-yellow-400';
-      icon = '📊';
-    } else if (typeof cell === 'string' && cell.includes('$')) {
-      borderColor = 'border-green-500';
-      textColor = 'text-green-400';
+    if (typeof cell === 'string' && cell.includes('$')) {
       icon = '💵';
-    } else if (!isNaN(cell)) {
-      borderColor = 'border-blue-500';
-      textColor = 'text-blue-400';
-      icon = '🔢';
+      textColor = 'text-green-600';
+      borderColor = 'border-green-300';
+      bgColor = 'from-green-50 to-green-100';
+      formattedCell = cell.replace('$', '$') + 'M';
+    } else if (!isNaN(cell) && !cell.includes('%')) {
+      icon = '🤝';
+      textColor = 'text-indigo-600';
+      borderColor = 'border-indigo-300';
+      bgColor = 'from-indigo-50 to-indigo-100';
+    } else if (cell.includes('%')) {
+      textColor = 'text-yellow-600';
+      borderColor = 'border-yellow-300';
+      bgColor = 'from-yellow-50 to-yellow-100';
     }
 
     return (
-      <div className={`border ${borderColor} bg-gray-900 p-2 rounded-md shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105`}>
-        <div className="flex items-center justify-between">
-          <span className={`${textColor} text-xl font-bold`}>{cell}</span>
-          {icon && <span className="text-sm ml-1">{icon}</span>}
+      <div className={`bg-gradient-to-br ${bgColor} p-3 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg border-2 ${borderColor} flex flex-col items-center justify-center h-full transform hover:-translate-y-1`}>
+        <div className="flex items-center justify-center space-x-2">
+          <span className={`${textColor} text-xl font-bold`}>{formattedCell}</span>
+          <span className="text-lg">{icon}</span>
         </div>
-        <span className="text-xs text-gray-400 font-medium mt-1 block truncate">{label}</span>
+        <span className="text-xs text-gray-600 font-medium mt-2 block text-center">{label}</span>
       </div>
     );
   };
 
   return (
-    <div className="stats-container bg-gray-900 p-4 rounded-lg shadow-md max-w-5xl mx-auto">
-      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-10">
+    <div className="stats-container bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-xl shadow-lg w-full mx-auto border border-gray-200">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
         {data.slice(1).map((row, rowIndex) => (
-          <div key={rowIndex}>
+          <div key={rowIndex} className="h-18">
             {formatCell(row[1], row[0])}
           </div>
         ))}

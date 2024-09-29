@@ -14,6 +14,7 @@ const TableRow = ({ row, visibleHeaders, headers, columnsToHide, onStadiumClick,
   const link1Index = headers.indexOf('Link 1');
   const signedIndex = headers.indexOf('Signed');
   const stadiumUrlIndex = headers.indexOf('stadium-url');
+  const wikipediaIndex = headers.indexOf('Wikipedia');
 
   const handleRowClick = () => {
     const stadiumUrl = row[stadiumUrlIndex];
@@ -26,18 +27,21 @@ const TableRow = ({ row, visibleHeaders, headers, columnsToHide, onStadiumClick,
   
   return (
     <tr
-      className="hover:bg-sky-50 transition-colors duration-200 ease-in-out cursor-pointer"
+      className="hover:bg-sky-50 transition-colors duration-200 ease-in-out cursor-pointer border-b border-gray-200 relative"
       onClick={handleRowClick}
     >
-      {row.filter((_, index) => !columnsToHide.includes(headers[index])).map((cell, cellIndex) => {
+      {row.filter((_, index) => !columnsToHide.includes(headers[index]) && headers[index] !== 'Wikipedia').map((cell, cellIndex) => {
         const header = visibleHeaders[cellIndex];
         const isSignedColumn = header === 'Signed';
         const link1 = row[link1Index];
+        const wikipediaUrl = row[wikipediaIndex];
 
         let cellContent;
         let cellClass = 'px-2 py-2 text-sm';
 
-        if (header === 'ANNUAL' || header === 'TOTAL') {
+        if (cell === '' || cell === null || cell === undefined) {
+          cellContent = <span className="text-gray-400">❓</span>;
+        } else if (header === 'ANNUAL' || header === 'TOTAL') {
           const numValue = parseFloat(cell.replace(/[^0-9.-]+/g, ""));
           const { min, max } = minMaxValues[header];
           cellClass += ` ${getColorClass(numValue, min, max)}`;
@@ -58,6 +62,22 @@ const TableRow = ({ row, visibleHeaders, headers, columnsToHide, onStadiumClick,
               {cell}y
             </span>
           );
+        } else if (header === 'FOOTBALL STADIUM') {
+          const words = cell.split(' ');
+          const firstLine = words.slice(0, Math.ceil(words.length / 2)).join(' ');
+          const secondLine = words.slice(Math.ceil(words.length / 2)).join(' ');
+          cellContent = (
+            <a
+              href={wikipediaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 hover:underline block"
+              onClick={(e) => e.stopPropagation()} // Prevent row click when clicking the link
+            >
+              <span className="block">{firstLine}</span>
+              <span className="block">{secondLine}</span>
+            </a>
+          );
         } else {
           cellContent = renderCell(cell, header);
         }
@@ -65,7 +85,7 @@ const TableRow = ({ row, visibleHeaders, headers, columnsToHide, onStadiumClick,
         if (header === 'School') {
           cellClass += ' font-semibold text-gray-900';
         } else if (header === 'FOOTBALL STADIUM') {
-          cellClass += ' max-w-[150px] truncate';
+          cellClass += ' max-w-[150px]';
         }
 
         return (

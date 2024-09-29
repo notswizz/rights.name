@@ -3,7 +3,7 @@ import TableRow from './TableRow';
 
 const TableBody = ({ sortedData, visibleHeaders, headers, columnsToHide, onStadiumClick }) => {
   return (
-    <tbody>
+    <tbody className="bg-white divide-y divide-gray-200">
       {sortedData.map((row, rowIndex) => (
         <TableRow
           key={rowIndex}
@@ -12,6 +12,7 @@ const TableBody = ({ sortedData, visibleHeaders, headers, columnsToHide, onStadi
           headers={headers}
           columnsToHide={columnsToHide}
           onStadiumClick={onStadiumClick}
+          className="hover:bg-gray-50 transition-colors duration-150"
         />
       ))}
     </tbody>
