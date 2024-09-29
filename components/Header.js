@@ -25,7 +25,7 @@ const Header = () => {
             <NavItem href="/" icon={<FiHome />} text="Home" />
             <NavItem href="/research" icon={<FiSearch />} text="Research" />
             <NavItem href="/news" icon={<FiFileText />} text="News" />
-            <NavItem href="/about" icon={<FiInfo />} text="Who is ISE?" />
+            <NavItem href="https://iseworldwide.com/properties/" icon={<FiInfo />} text="Who is ISE?" newTab={true} />
             <NavItem href="/contact" icon={<FiMail />} text="Contact" />
           </ul>
         </div>
@@ -34,14 +34,23 @@ const Header = () => {
   );
 };
 
-const NavItem = ({ href, icon, text }) => (
+const NavItem = ({ href, icon, text, newTab }) => (
   <li>
-    <Link href={href}>
-      <span className="flex items-center px-5 py-3 hover:bg-gray-800 cursor-pointer">
-        {icon}
-        <span className="ml-2">{text}</span>
-      </span>
-    </Link>
+    {newTab ? (
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        <span className="flex items-center px-5 py-3 hover:bg-gray-800 cursor-pointer">
+          {icon}
+          <span className="ml-2">{text}</span>
+        </span>
+      </a>
+    ) : (
+      <Link href={href}>
+        <span className="flex items-center px-5 py-3 hover:bg-gray-800 cursor-pointer">
+          {icon}
+          <span className="ml-2">{text}</span>
+        </span>
+      </Link>
+    )}
   </li>
 );
 

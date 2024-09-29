@@ -3,6 +3,7 @@ import Table from '../components/Table';
 import CFBStats from '../components/CFBStats';
 import dynamic from 'next/dynamic';
 import Header from '../components/Header';
+import CFBTab from '../components/CFBTab';
 
 const DynamicTable = dynamic(() => import('../components/Table'), { ssr: false });
 
@@ -66,7 +67,7 @@ export default function Home() {
   }, [sportCategories]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 py-4 sm:py-8 px-2 sm:px-4 md:px-6 lg:px-8 relative">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 py-1 sm:py-6 px-2 sm:px-4 md:px-6 lg:px-8 relative">
       <Header />
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-6">
@@ -92,22 +93,29 @@ export default function Home() {
   </select>
           </div>
         </div>
-        <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg shadow-2xl overflow-hidden border border-white border-opacity-20">
-          <div
-            className="w-full p-2 sm:p-4"
-            style={{  backgroundSize: 'cover', backgroundPosition: 'center' }}
-          >
-            {loading ? (
-              <div className="text-center mt-10 text-gray-700">Loading...</div>
-            ) : error ? (
-              <div className="text-red-500 text-center mt-10">{error}</div>
-            ) : (
-              <DynamicTable data={data} onStadiumClick={handleStadiumClick} />
-            )}
+        <div className="flex flex-col lg:flex-row gap-2">
+          <div className="w-full lg:w-7/8">
+            <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg shadow-2xl overflow-hidden border border-white border-opacity-20">
+              <div
+                className="w-full p-2 sm:p-4"
+                style={{  backgroundSize: 'cover', backgroundPosition: 'center' }}
+              >
+                {loading ? (
+                  <div className="text-center mt-10 text-gray-700">Loading...</div>
+                ) : error ? (
+                  <div className="text-red-500 text-center mt-10">{error}</div>
+                ) : (
+                  <DynamicTable data={data} onStadiumClick={handleStadiumClick} />
+                )}
+              </div>
+            </div>
+            <div className="mt-1">
+              <CFBStats />
+            </div>
           </div>
-        </div>
-        <div className="mt-1">
-          <CFBStats />
+          <div className="w-full lg:w-1/8 h-[calc(100vh-150px)]">
+            <CFBTab />
+          </div>
         </div>
       </div>
     </div>

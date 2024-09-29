@@ -52,18 +52,18 @@ const CFBStats = () => {
     }
 
     return (
-      <div className={`bg-gradient-to-br ${bgColor} p-3 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg border-2 ${borderColor} flex flex-col items-center justify-center h-full transform hover:-translate-y-1`}>
+      <div className={`bg-gradient-to-br ${bgColor} p-2 rounded-lg shadow-lg transition-all duration-300 hover:shadow-lg border-2 ${borderColor} flex flex-col items-center justify-center h-full transform hover:-translate-y-1`}>
         <div className="flex items-center justify-center space-x-2">
           <span className={`${textColor} text-xl font-bold`}>{formattedCell}</span>
           <span className="text-lg">{icon}</span>
         </div>
-        <span className="text-xs text-gray-600 font-medium mt-2 block text-center">{label}</span>
+        <span className="text-xs text-gray-600 font-medium block text-center">{label}</span>
       </div>
     );
   };
 
   return (
-    <div className="stats-container bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-xl shadow-lg w-full mx-auto border border-gray-200">
+    <div className="stats-container bg-gradient-to-br from-black to-black p-2 rounded-lg shadow-md w-full mx-auto border border-gray-200">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
         {data.slice(1).map((row, rowIndex) => (
           <div key={rowIndex} className="h-18">
