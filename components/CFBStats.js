@@ -28,38 +28,39 @@ const CFBStats = () => {
   if (error) return <div>{error}</div>;
 
   const formatCell = (cell, label) => {
-    let bgColor = 'bg-white';
-    let textColor = 'text-gray-800';
+    let bgColor = 'bg-gray-800';
+    let textColor = 'text-white';
     let icon = null;
 
     if (typeof cell === 'string' && cell.includes('%')) {
-      bgColor = 'bg-yellow-50';
-      textColor = 'text-yellow-700';
+      bgColor = 'bg-yellow-900';
+      textColor = 'text-yellow-300';
       icon = '📊';
     } else if (typeof cell === 'string' && cell.includes('$')) {
-      bgColor = 'bg-green-50';
-      textColor = 'text-green-700';
+      bgColor = 'bg-green-900';
+      textColor = 'text-green-300';
       icon = '💵';
     } else if (!isNaN(cell)) {
-      bgColor = 'bg-blue-50';
-      textColor = 'text-blue-700';
+      bgColor = 'bg-blue-900';
+      textColor = 'text-blue-300';
       icon = '🔢';
     }
 
     return (
-      <div className={`${bgColor} p-3 rounded-md shadow-sm transition-all duration-300 hover:shadow-md hover:scale-102`}>
+      <div className={`${bgColor} p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105`}>
         <div className="flex items-center justify-between">
-          <span className={`${textColor} text-xl font-bold`}>{cell}</span>
-          {icon && <span className="text-lg ml-2">{icon}</span>}
+          <span className={`${textColor} text-2xl font-bold`}>{cell}</span>
+          {icon && <span className="text-xl ml-2">{icon}</span>}
         </div>
-        <span className="text-xs text-gray-500 font-medium mt-1 block">{label}</span>
+        <span className="text-xs text-gray-400 font-medium mt-2 block">{label}</span>
       </div>
     );
   };
 
   return (
-    <div className="stats-container bg-gradient-to-br from-black to-black p-4 rounded-lg shadow-xl max-w-4xl mx-auto">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+    <div className="stats-container bg-gray-900 p-2 rounded-xl shadow-2xl max-w-6xl mx-auto">
+  
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {data.slice(1).map((row, rowIndex) => (
           <div key={rowIndex}>
             {formatCell(row[1], row[0])}
