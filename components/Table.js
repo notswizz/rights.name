@@ -4,7 +4,7 @@ import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import { filterData, sortData } from './tableUtils';
 
-const Table = ({ data, onStadiumClick }) => {
+const Table = ({ data, onStadiumClick, onSearchChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
   const [searchBackgroundImage, setSearchBackgroundImage] = useState('isecover.jpeg');
@@ -36,6 +36,14 @@ const Table = ({ data, onStadiumClick }) => {
     }
   }, [onStadiumClick]);
 
+  const handleSearchChange = (e) => {
+    const newSearchTerm = e.target.value;
+    setSearchTerm(newSearchTerm);
+    if (onSearchChange) {
+      onSearchChange(newSearchTerm);
+    }
+  };
+
   return (
     <div className="bg-white shadow-2xl rounded-lg overflow-hidden max-w-full mx-auto border border-gray-200">
       <div 
@@ -55,7 +63,7 @@ const Table = ({ data, onStadiumClick }) => {
               placeholder="Search..."
               className="w-full p-2 sm:p-3 rounded-md border-2 sm:border-4 border-blue-300 bg-white bg-opacity-20 text-white placeholder-white focus:bg-white focus:text-black focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={handleSearchChange}
             />
             <div className="flex items-center ml-2">
               <span className="inline-flex items-center justify-center px-2 py-2 sm:py-3 text-base sm:text-lg border-white border-2 sm:border-4 leading-none text-white bg-blue-500 bg-opacity-50 rounded-md">
