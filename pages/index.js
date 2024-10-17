@@ -1,16 +1,11 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-
+import React from 'react';
 import Header from '../components/Header';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
-
 export default function Home() {
-
-
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen bg-gray-100">
       <Header />
       
       {/* Landing Page Section */}
@@ -30,17 +25,15 @@ export default function Home() {
         <p className="text-xl md:text-2xl mb-8 text-gray-600">
           The Leader in College Naming Rights 
         </p>
-        <Link href="/research">
-          <button 
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
-          >
+        <div className="flex justify-center space-x-4">
+          <Link href="/research" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
             Explore Our Data
-          </button>
-        </Link>
+          </Link>
+          <Link href="/chat" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+            Chat With Bot
+          </Link>
+        </div>
       </div>
-
-    
-   
     </div>
   );
 }

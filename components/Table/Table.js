@@ -45,37 +45,33 @@ const Table = ({ data, onStadiumClick, onSearchChange }) => {
   };
 
   return (
-    <div className="bg-white shadow-2xl rounded-lg overflow-hidden max-w-full mx-auto border border-gray-200">
+    <div className="bg-white shadow-xl rounded-lg overflow-hidden mx-auto border border-gray-300">
       <div 
-        className="p-4 sm:p-8 md:p-12 lg:p-16 bg-gradient-to-r from-blue-400 to-indigo-500 border-b border-blue-700 relative h-30 sm:h-48 md:h-30 lg:h-30"
+        className="p-6 bg-gradient-to-r from-blue-500 to-indigo-600 border-b border-blue-700 relative h-64"
         style={{ 
           backgroundImage: `url(${searchBackgroundImage})`, 
           backgroundSize: 'cover', 
           backgroundPosition: 'center',
-          boxShadow: 'inset 0 0 100px rgba(0,0,0,0.5)'
+          boxShadow: 'inset 0 0 50px rgba(0,0,0,0.4)'
         }}
       >
-        <div className="flex flex-col sm:flex-row items-center justify-between">
-          <div className="flex items-center w-full sm:w-auto mb-4 sm:mb-0">
-            <FaSearch className="text-white mr-2" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full p-2 sm:p-3 rounded-md border-2 sm:border-4 border-blue-300 bg-white bg-opacity-20 text-white placeholder-white focus:bg-white focus:text-black focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-            <div className="flex items-center ml-2">
-              <span className="inline-flex items-center justify-center px-2 py-2 sm:py-3 text-base sm:text-lg border-white border-2 sm:border-4 leading-none text-white bg-blue-500 bg-opacity-50 rounded-md">
-                {sortedData.length}
-              </span>
-            </div>
+        <div className="flex items-center justify-left">
+          <FaSearch className="text-white mr-3" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-60 p-3 rounded-md border-2 border-blue-300 bg-white bg-opacity-20 text-white placeholder-white focus:bg-white focus:text-black focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+          <div className="ml-4 text-lg text-white">
+            {sortedData.length}
           </div>
         </div>
       </div>
       <div className="overflow-x-auto">
-        <div className="min-h-[200px] sm:min-h-[300px] max-h-[50vh] border-t border-gray-200 overflow-y-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+        <div className="min-h-[200px] max-h-[50vh] border-t border-gray-200 overflow-y-auto">
+          <table className="min-w-full divide-y divide-gray-300">
             <TableHeader
               visibleHeaders={visibleHeaders}
               requestSort={requestSort}

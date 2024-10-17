@@ -23,6 +23,8 @@ const TableRow = ({ row, visibleHeaders, headers, columnsToHide, onStadiumClick,
     }
   };
 
+  
+
   const mobileColumnsToHide = ['AGENCY', 'LENGTH', 'ANNUAL', 'TOTAL', 'Signed'];
   
   return (

@@ -24,7 +24,7 @@ const Header = () => {
           <ul className="flex-grow">
             <NavItem href="/" icon={<FiHome />} text="Home" />
             <NavItem href="/research" icon={<FiSearch />} text="Research" />
-            <NavItem href="/news" icon={<FiFileText />} text="News" />
+            <NavItem href="/chat" icon={<FiFileText />} text="Chat" />
             <NavItem href="https://iseworldwide.com/properties/" icon={<FiInfo />} text="Who is ISE?" newTab={true} />
             <NavItem href="/contact" icon={<FiMail />} text="Contact" />
           </ul>

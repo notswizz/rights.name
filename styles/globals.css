@@ -2,3 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 15s ease infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 15px rgba(88, 101, 242, 0.5), inset 0 0 15px rgba(88, 101, 242, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(88, 101, 242, 0.8), inset 0 0 30px rgba(88, 101, 242, 0.8);
+    }
+  }
+
+  

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import Table from '../components/Table';
-import CFBStats from '../components/CFBStats';
+import Table from '../components/Table/Table';
+import CFBStats from '../components/CFB/CFBStats';
 import dynamic from 'next/dynamic';
 import Header from '../components/Header';
-import CFBTab from '../components/CFBTab';
+import CFBTab from '../components/CFB/CFBTab';
 
-const DynamicTable = dynamic(() => import('../components/Table'), { ssr: false });
+const DynamicTable = dynamic(() => import('../components/Table/Table'), { ssr: false });
 
 export default function Research() {
   const [sport, setSport] = useState('College Football');
@@ -72,10 +72,12 @@ export default function Research() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 py-1 sm:py-6 px-2 sm:px-4 md:px-6 lg:px-8 relative">
+    <div className="min-h-screen bg-gradient-to-t from-[#e0f3ff] via-[#b0d8ff] to-[#7ba4c9] py-1 sm:py-6 px-2 sm:px-4 md:px-6 lg:px-8 relative">
       <Header />
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-6">
+      <div className="max-w-5xl mx-auto">
+     
+        <div className="flex justify-evenly items-center mb-4">
+         
           <div className="inline-flex items-center bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-1 shadow-lg">
             <select 
               value={sport} 
@@ -97,6 +99,7 @@ export default function Research() {
               ))}
             </select>
           </div>
+         
         </div>
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="w-full lg:w-7/8">
@@ -122,7 +125,7 @@ export default function Research() {
               <CFBStats />
             </div>
           </div>
-          <div className="w-full lg:w-1/8">
+          <div className="w-full lg:w-1/8 mt-2 -ml-6">
             <CFBTab searchTerm={searchTerm} data={data.slice(1)} />
           </div>
         </div>
